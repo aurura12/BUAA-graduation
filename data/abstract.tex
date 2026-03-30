@@ -1,13 +1,21 @@
 % !Mode:: "TeX:UTF-8"
 
-% 中英文摘要
 \begin{cabstract}
-本篇文档主要介绍{\bf 北航毕业设计论文\LaTeX{}模板}使用和相关软件环境的安装配置，
-以及本模板所遵循的开源协议等。
+
+随着智慧交通系统的快速发展，多源异构交通数据的爆发式增长对现有的感知与决策模型提出了严峻挑战。传统的交通分析模型在处理复杂、长尾的交通场景时，由于缺乏跨模态特征对齐能力与逻辑推理能力，难以实现全场景的智能化管理。针对上述问题，本文设计并实现了一套基于智能体（Agent）的交通大模型协同推理架构。
+
+本文的主要研究内容包括：首先，构建了一个涵盖雷达点云、监控视频与文本描述的多模态交通数据集，并通过对比学习技术实现了异构数据的时空深度对齐；其次，设计了以大语言模型为逻辑中枢的智能体架构，通过思维链（CoT）与 ReAct 框架实现了对复杂 management 意图的自动拆解与专家工具的自主调度；随后，集成了时空基座模型与视觉基座模型，实现了在多源数据驱动下的交通态势精准预测与异常状况识别。
+
+通过在真实智慧高速数据集上的实验验证，本系统不仅能够有效解析复杂的交通语义关联，显著提升了长尾场景下的预测精度与鲁棒性，还通过自然语言交互降低了人机协作门槛。本研究为构建具备高度自治能力的新型智慧城市交通体系提供了关键的技术支持与实践路径。
+
 \end{cabstract}
 
 \begin{eabstract}
-Here is the Abstract in English. And this is a test sentence, just for
-a test to see how the buaathesis works. You can just ignore this.\par
-This is another pargraph.
+
+With the rapid development of intelligent transportation systems, the explosive growth of multi-source heterogeneous traffic data poses severe challenges to existing perception and decision-making models. Traditional traffic analysis models struggle to achieve full-scene intelligent management when dealing with complex and long-tail traffic scenarios due to their lack of cross-modal feature alignment and logical reasoning capabilities. To address these issues, this thesis designs and implements a collaborative reasoning architecture for traffic large models based on Agents.
+
+The primary research content of this thesis includes: first, constructing a multi-modal traffic dataset covering radar point clouds, surveillance videos, and textual descriptions, and achieving deep spatio-temporal alignment of heterogeneous data through contrastive learning; second, designing an agent architecture with a large language model as the logical core, realizing the automatic decomposition of complex management intentions and autonomous scheduling of expert tools via Chain of Thought (CoT) and the ReAct framework; subsequently, integrating spatio-temporal foundation models and vision foundation models to achieve precise traffic state prediction and anomaly recognition driven by multi-source data.
+
+Experimental validation on real-world smart highway datasets demonstrates that the system can effectively parse complex traffic semantic correlations, significantly improving prediction accuracy and robustness in long-tail scenarios, while lowering the barrier for human-computer collaboration through natural language interaction. This research provides critical technical support and a practical path for constructing a new type of smart city transportation system with high autonomy.
+
 \end{eabstract}

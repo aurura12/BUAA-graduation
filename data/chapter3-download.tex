@@ -1,86 +1,40 @@
 % !Mode:: "TeX:UTF-8"
-\chapter{下载}
+\chapter{系统架构与技术路线}
 
-\section{发行版本}
+\section{总体研究方案}
 
-发行版本是本模板编写者会不定期更新打包的版本，适合大部分用户使用，
-优点是相对较为稳定，下载和使用都更方便便捷，
-缺点是可能不包含一些最新的更新，不过应该足够满足常规毕业设计论文撰写需求。
-由于本模板仍在开发之中，我们将适时更新本说明文档及相关项目介绍和使用方法，
-敬请关注后续进展。
+本研究采取“数据驱动感知、大模型逻辑中枢、Agent协同执行”的总体方案。
 
-\section{开发版本}
+首先，利用多源传感器采集的高速交通数据构建多模态对齐数据集，为后续的 Agent 推理提供高质量的感知输入；其次，以预训练大语言模型（LLM）作为智能体大脑，通过构建基于思维链（Chain of Thought, CoT）的推理引擎，实现对复杂、模糊交通任务指令的细粒度意图拆解。针对交通任务的领域特性，设计了一套标准化的工具调用链路（Tool-Chain），通过 ReAct（Reasoning and Acting）框架使 Agent 能够根据场景需求，动态决策并自主调度底层工具；最后，通过插件化集成时空基座模型（BigCity）与视觉感知模型，构建一个能够自主规划、调用工具并解决复杂交通任务的闭环系统。
 
-开发版本是通过Git直接clone本模板托管在Github版本库中的最新代码，
-适合有版本管理工具使用经验和对LaTeX使用较为熟练的用户。
-优点是包含最新的模板代码，
-缺点是稳定性无法保证，可能有一些小问题，
-当然我们很欢迎您通过所有可能的方式将问题反馈给我们。
+\section{技术路线}
 
-\subsection{下载方法}
-首先你需要打开准备存放毕业设计论文的目录，
-通过命令\ref{code-git-clone}即可获取最新的模板代码，
-需要注意的是这将在当前目录下新建一个名为BUAAthesis的文件夹。
-\begin{lstlisting}[
-    language={bash},
-    caption={git clone},
-    label={code-git-clone},
-]
-git clone git://github.com/BHOSC/BUAAthesis.git
-\end{lstlisting}
+\subsection{感知层}
 
-\subsection{更新方法}
-通过命令\ref{code-git-pull}即可实现模板代码的更新，
-需要注意的是此处可能会出现冲突，相关处理方法将在后续说明。
-\begin{lstlisting}[
-    language={bash},
-    caption={git pull},
-    label={code-git-pull},
-]
-git pull origin master
-\end{lstlisting}
+感知层作为系统的逻辑起点，重点在于解决高速公路场景下异构数据的集成问题。本项目通过采集雷达点云、监控视频及事故文本报告，利用对比学习技术建立跨模态的时空对齐机制，将碎片化的物理特征映射至统一的语义向量空间。这一过程不仅消除了不同传感器间的时间延迟与空间位移误差，更通过特征层面的深度融合，为后续的智能体推理提供了具备高一致性与高保真度的多模态感知输入。
 
-\section{目录结构}
+\subsection{认知层}
 
-本模板项目完整的文件目录结构如下所示：
+认知层发挥系统“大脑”的作用，通过预训练大语言模型（LLM）实现对交通管理意图的深层解析。系统构建了基于思维链（Chain of Thought, CoT）的推理引擎，能够将模糊、宏观的交通任务指令自动化地拆解为逻辑严密的细粒度子任务序列。这种推理模式使系统不仅能识别表层的交通状态，更能理解复杂的交通因果逻辑，为决策阶段奠定认知基础。
 
-{
-    \dirtree{%
-        .1 BUAAthesis/\DTcomment{根目录}.
-        .2 buaathesis.cls\DTcomment{模板文件}.
-        .2 buaathesis.bst\DTcomment{参考文献样式}.
-        .2 sample-bachelor.tex\DTcomment{本科生示例文件}.
-        .2 sample-master.tex\DTcomment{研究生示例文件}.
-        .2 data/\DTcomment{数据文件夹}.
-        .3 abstract.tex\DTcomment{中英文摘要}.
-        .3 appendix1-faq.tex\DTcomment{附录1，常见问题}.
-        .3 appendix2-contactus.tex\DTcomment{附录2，联系我们}.
-        .3 bibs.bib\DTcomment{参考文献文件}.
-        .3 chapter1-intro.tex.
-        .3 chapter2-config.tex.
-        .3 chapter3-download.tex.
-        .3 chapter4-baisc.tex.
-        .3 chapter5-usage.tex.
-        .3 chapter6-implement.tex.
-        .3 com\_info.tex\DTcomment{通用自定义信息}.
-        .3 reference.tex\DTcomment{参考文献}.
-        .3 bachelor/\DTcomment{本科生专属文件}.
-        .4 assign.tex\DTcomment{任务书}.
-        .4 bachelor\_info.tex\DTcomment{本科生专属信息}.
-        .4 acknowledgement.tex\DTcomment{致谢页}.
-        .3 master/\DTcomment{研究生专属文件}.
-        .4 back1-achievement.tex\DTcomment{附页1，取得成绩}.
-        .4 back2-acknowledgement.tex\DTcomment{附页2，致谢}.
-        .4 back3-aboutauthor.tex\DTcomment{附页3，关于作者}.
-        .4 denotation.tex\DTcomment{主要符号对照表}.
-        .4 master\_info.tex\DTcomment{研究生专属信息}.
-        .2 figure/\DTcomment{图片存放路径}.
-        .3 buaamark.eps\DTcomment{北航Logo，用于页眉}.
-        .3 buaaname.eps\DTcomment{北航校名，用于首页}.
-        .3 fgbt.jpg\DTcomment{北航未来花园Logo，用于测试}.
-        .2 Makefile\DTcomment{Linux下辅助脚本}.
-        .2 msmake.bat\DTcomment{Windows下辅助脚本}.
-        .2 README.md\DTcomment{Github项目说明}.
-        .2 .gitignore\DTcomment{Git版本管理配置文件}.
-    }
-}
+\subsection{决策层}
+
+决策层是连接认知逻辑与具体执行的桥梁，核心在于引入 ReAct（Reasoning and Acting）框架设计标准化的工具调用链路。智能体在此层级能够根据感知层输入的实时态势与认知层的任务拆解结果，进行动态的自主决策。通过预定义的 API 协议，Agent 能够识别任务边界并自主调度底层的专家工具（如数据检索、轨迹预测等），确保在处理突发交通长尾场景时，系统具备灵活的调度能力与高度的自主性。
+
+\subsection{执行层}
+
+执行层是系统闭环能力的落脚点，通过插件化集成 BigCity/LibCity 等时空基座模型与视觉感知模型，实现对交通任务的并行处理。该层级利用图卷积与 Transformer 架构深度挖掘路网的时空周期规律，并将视觉解析出的突发语义融入定量的流量预测中。通过多模型的高效协同，执行层能够输出包括态势预测结果、事故定性描述及初步方案建议在内的综合性执行反馈，完成了从数据到决策的实质性转化。
+
+\subsection{应用层}
+
+应用层侧重于工程落地与效能评估，基于 FastAPI 框架开发高性能后端原型系统，并利用 SQLite 构建具备时序记忆能力的本地数据库。研究在异常监测、流量预测等核心任务中开展多维实验，通过真实场景数据的回放与交互测试，验证智能体架构在复杂环境下的泛化性能与实用价值。
+
+\section{技术开发环境与实现工具}
+
+\begin{itemize}
+    \item \textbf{开发语言}：Python
+    \item \textbf{后端服务}：FastAPI
+    \item \textbf{数据库}：SQLite
+    \item \textbf{时空基座模型}：BigCity, LibCity
+    \item \textbf{逻辑控制框架}：LangChain / ReAct 推理范式
+\end{itemize}
