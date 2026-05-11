@@ -2,20 +2,20 @@
 
 \begin{cabstract}
 
-随着智慧交通系统的快速发展，多源异构交通数据的爆发式增长对现有的感知与决策模型提出了严峻挑战。传统的交通分析模型在处理复杂、长尾的交通场景时，由于缺乏跨模态特征对齐能力与逻辑推理能力，难以实现全场景的智能化管理。针对上述问题，本文设计并实现了一套基于大模型的交通智能体协同推理架构。
+城市交通管理对实时数据分析和自然语言交互提出了越来越高的要求。传统的交通数据分析工具依赖固定的查询界面和预设的报表格式，非专业人员很难快速获取所需的交通状态信息。针对这一问题，本文设计并实现了一个基于大语言模型的交通智能体系统。
 
-本文的主要研究内容包括：首先，构建了一个涵盖雷达点云、监控视频与文本描述的多模态交通数据集，并通过对比学习技术实现了异构数据的时空深度对齐；其次，设计了以大语言模型为逻辑中枢的智能体架构，通过思维链（CoT）与 ReAct 框架实现了对复杂任务意图的自动拆解与专家工具的自主调度；随后，集成了时空基座模型与视觉基座模型，实现了在多源数据驱动下的交通态势精准预测与异常状况识别。
+该系统采用慢思考与快反应相结合的双层架构。慢思考层由本地部署的 Qwen3.5-9B 大模型驱动，负责理解用户的自然语言指令并确定需要调用哪些工具。快反应层由三个核心工具组成，分别是交通状态查询工具、历史趋势分析工具和基于 PDFormer 时空模型的流量预测工具。两层之间通过 LangGraph 状态图进行编排，形成推理与执行交替进行的 ReAct 循环。在部署方式上，大模型通过 vLLM 推理框架运行在本地 GPU 服务器上，支持 20K Token 的上下文窗口。
 
-通过在真实智慧高速数据集上的实验验证，本系统不仅能够有效解析复杂的交通语义关联，显著提升了长尾场景下的预测精度与鲁棒性，还通过自然语言交互降低了人机协作门槛。本研究为构建具备高度自治能力的新型智慧城市交通体系提供了关键的技术支持与实践路径。
+本文设计了一套覆盖七类场景的 37 条测试用例，从意图识别、工具调度、报告质量和异常处理四个维度对智能体进行了系统评估。实验结果显示，智能体的意图识别准确率为 100\%，能够正确解析五种不同格式的自然语言时间表述，并在传感器查询、拥堵研判、流量预测和多工具协同等场景下稳定生成结构化的中文分析报告。实验中也发现了多工具协同场景下的数字歧义问题：当传感器编号落在 1–31 范围内时，大模型可能将其误读为日期，这一问题为后续的提示词优化提供了方向。
 
 \end{cabstract}
 
 \begin{eabstract}
 
-With the rapid development of intelligent transportation systems, the explosive growth of multi-source heterogeneous traffic data challenges existing perception and decision-making models. Traditional models lack cross-modal alignment and reasoning for complex, long-tail scenarios. This thesis designs an Agent-based collaborative reasoning architecture for traffic large models.
+Urban traffic management increasingly demands real-time data analysis and natural language interaction. Traditional traffic analysis tools rely on fixed query interfaces and predefined report formats, making it difficult for non-experts to quickly obtain the information they need. To address this problem, this thesis designs and implements a traffic agent system based on a large language model.
 
-Key contributions: constructing a multi-modal dataset (radar, video, text) with spatio-temporal alignment via contrastive learning; designing an LLM-centered agent for intent decomposition and tool scheduling using CoT and ReAct; integrating spatio-temporal and vision models for prediction and anomaly detection.
+The system adopts a dual-layer architecture combining slow thinking and fast reaction. The slow-thinking layer is driven by a locally deployed Qwen3.5-9B model, responsible for understanding natural language instructions and deciding which tools to invoke. The fast-reaction layer consists of three core tools: a traffic state query tool, a historical trend analysis tool, and a traffic flow prediction tool based on the PDFormer spatio-temporal model. The two layers are orchestrated through a LangGraph state graph, forming a ReAct loop in which reasoning and execution alternate. The large model runs on a local GPU server via the vLLM inference framework, supporting a context window of 20K tokens.
 
-Experiments on real datasets show improved accuracy in long-tail scenarios and enhanced human-computer interaction. This work supports autonomous smart city transportation systems.
+A test suite of 37 cases covering seven scenario categories was designed to systematically evaluate the agent across four dimensions: intent recognition, tool dispatch, report quality, and error handling. Experimental results show that the agent achieves 100\% intent recognition accuracy, correctly parses five different natural language time formats, and stably generates structured Chinese analysis reports across query, congestion assessment, traffic prediction, and multi-tool collaboration scenarios. A digital ambiguity issue was also identified: when a sensor ID falls within the 1–31 range, the model may misinterpret it as a calendar date, pointing to a direction for future prompt engineering improvements.
 
 \end{eabstract}
