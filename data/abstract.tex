@@ -2,20 +2,20 @@
 
 \begin{cabstract}
 
-城市交通管理对实时数据分析和自然语言交互提出了越来越高的要求。传统的交通数据分析工具依赖固定的查询界面和预设的报表格式，非专业人员很难快速获取所需的交通状态信息。针对这一问题，本文设计并实现了一个基于大语言模型的交通智能体系统。
+城市交通管理需要实时分析数据，同时用户也希望用自然语言来和系统交互。传统的交通分析工具一般使用固定的查询界面和预设的报表格式，非专业人员很难从中快速获取自己需要的交通信息。针对这个问题，本文设计并实现了一个基于大语言模型的交通智能体系统。
 
-该系统采用慢思考与快反应相结合的双层架构。慢思考层由本地部署的 Qwen3.5-9B 大模型驱动，负责理解用户的自然语言指令并确定需要调用哪些工具。快反应层由三个核心工具组成，分别是交通状态查询工具、历史趋势分析工具和基于 PDFormer 时空模型的流量预测工具。两层之间通过 LangGraph 状态图进行编排，形成推理与执行交替进行的 ReAct 循环。在部署方式上，大模型通过 vLLM 推理框架运行在本地 GPU 服务器上，支持 20K Token 的上下文窗口。
+系统采用慢思考和快反应结合的双层架构。慢思考层使用本地部署的 Qwen3.5-9B 大模型，负责理解用户的自然语言指令，然后决定需要调用哪些工具。快反应层包含三个核心工具：交通状态查询工具、历史趋势分析工具和基于 PDFormer 时空模型的流量预测工具。两层之间通过 LangGraph 状态图来连接，形成一个推理和执行交替进行的 ReAct 循环。在部署方面，大模型通过 vLLM 推理框架运行在本地 GPU 服务器上，上下文窗口支持 20K Token。
 
-本文设计了一套覆盖七类场景的 37 条测试用例，从意图识别、工具调度、报告质量和异常处理四个维度对智能体进行了系统评估。实验结果显示，智能体的意图识别准确率为 100\%，能够正确解析五种不同格式的自然语言时间表述，并在传感器查询、拥堵研判、流量预测和多工具协同等场景下稳定生成结构化的中文分析报告。实验中也发现了多工具协同场景下的数字歧义问题：当传感器编号落在 1–31 范围内时，大模型可能将其误读为日期，这一问题为后续的提示词优化提供了方向。
+本文设计了一套覆盖七类场景的测试用例，共 37 条，从意图识别、工具调度、报告质量和异常处理四个维度对智能体进行了评估。实验结果表明，智能体的意图识别准确率达到 100\%，能够正确解析五种不同格式的自然语言时间表达，并且在传感器查询、拥堵判断、流量预测和多工具协同等场景中都能稳定地生成结构化的中文分析报告。同时实验也发现了一个问题：在多工具协同场景中，当传感器编号在 1 到 31 之间时，大模型可能会把编号误认为是日期。这个问题为后续改进提示词提供了方向。
 
 \end{cabstract}
 
 \begin{eabstract}
 
-Urban traffic management increasingly demands real-time data analysis and natural language interaction. Traditional traffic analysis tools rely on fixed query interfaces and predefined report formats, making it difficult for non-experts to quickly obtain the information they need. To address this problem, this thesis designs and implements a traffic agent system based on a large language model.
+Urban traffic management requires real-time data analysis and natural language interaction. Traditional traffic analysis tools use fixed query interfaces and preset report formats, which makes it hard for non-experts to quickly find the information they need. To solve this problem, this thesis designs and implements a traffic agent system based on a large language model.
 
-The system adopts a dual-layer architecture combining slow thinking and fast reaction. The slow-thinking layer is driven by a locally deployed Qwen3.5-9B model, responsible for understanding natural language instructions and deciding which tools to invoke. The fast-reaction layer consists of three core tools: a traffic state query tool, a historical trend analysis tool, and a traffic flow prediction tool based on the PDFormer spatio-temporal model. The two layers are orchestrated through a LangGraph state graph, forming a ReAct loop in which reasoning and execution alternate. The large model runs on a local GPU server via the vLLM inference framework, supporting a context window of 20K tokens.
+The system uses a dual-layer architecture of slow thinking and fast reaction. The slow-thinking layer runs a locally deployed Qwen3.5-9B model, which understands natural language instructions from users and decides which tools to call. The fast-reaction layer has three core tools: a traffic state query tool, a historical trend analysis tool, and a traffic flow prediction tool based on the PDFormer spatio-temporal model. The two layers are connected through a LangGraph state graph, forming a ReAct loop where reasoning and execution alternate. The large model runs on a local GPU server using the vLLM inference framework, with a context window of 20K tokens.
 
-A test suite of 37 cases covering seven scenario categories was designed to systematically evaluate the agent across four dimensions: intent recognition, tool dispatch, report quality, and error handling. Experimental results show that the agent achieves 100\% intent recognition accuracy, correctly parses five different natural language time formats, and stably generates structured Chinese analysis reports across query, congestion assessment, traffic prediction, and multi-tool collaboration scenarios. A digital ambiguity issue was also identified: when a sensor ID falls within the 1–31 range, the model may misinterpret it as a calendar date, pointing to a direction for future prompt engineering improvements.
+A test suite of 37 cases covering seven scenario categories was designed to evaluate the agent across four dimensions: intent recognition, tool dispatch, report quality, and error handling. The results show that the agent achieves 100\% intent recognition accuracy, can correctly parse five different natural language time formats, and generates structured Chinese analysis reports in query, congestion assessment, traffic prediction, and multi-tool collaboration scenarios. One issue was also found: when a sensor ID is between 1 and 31, the model may mistake it for a calendar date. This issue provides a direction for improving the prompt in the future.
 
 \end{eabstract}
