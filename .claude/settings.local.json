@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(where perl *)",
+      "Bash(perl -v)",
+      "Bash(perl -MFile::Path -e 'print $File::Path::VERSION')"
+    ]
+  }
+}
