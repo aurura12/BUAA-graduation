@@ -65,15 +65,17 @@ PDFormer 是本研究所用的时序预测引擎，主要是为了解决传统�
 图 6-1 给出了模型在测试集上的预测值与真实值对比曲线。图中的两个子图分别展示了第一个节点在两个测试集上前三天的预测效果。从曲线可以看出，在早晚高峰这种流量变化比较大的时段，PDFormer 依然能够较好地贴合真实值，说明模型可以准确地捕捉到交通流的非线性变化。
 
 \section{多步预测性能评价与局部验证}
-完成基础复现之后，本研究进一步针对 PeMS04 和 PeMS08 数据集做了多步预测性能的评估。如图 5-X 和图 5-Y 所示，实验记录了模型在未来 12 个预测步长（对应聚合后的 60 分钟）内的误差变化情况。
+完成基础复现之后，本研究进一步针对 PeMS04 和 PeMS08 数据集做了多步预测性能的评估。如图 \ref{subfig:pems04} 和图 \ref{subfig:pems08} 所示，实验记录了模型在未来 12 个预测步长（对应聚合后的 60 分钟）内的误差变化情况。
 
 \begin{figure}[htbp]
     \centering
     \subfigure[PeMS04 性能评估]{
         \includegraphics[width=0.48\textwidth]{image7.png}
+        \label{subfig:pems04}      % 添加标签
     }
     \subfigure[PeMS08 性能评估]{
         \includegraphics[width=0.48\textwidth]{image8.png}
+        \label{subfig:pems08}      % 添加标签
     }
     \caption{测试集预测值与真实值对比分析}
     \label{fig:performance_evaluation}
