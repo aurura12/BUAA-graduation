@@ -2,26 +2,28 @@
 % 任务书中的信息
 %% 原始资料及设计要求
 \assignReq
-{原始资料及设计要求第一行}
-{原始资料及设计要求第二行}
-{原始资料及设计要求第三行}
-{原始资料及设计要求第四行}
-{原始资料及设计要求第五行}
+{PeMS08 交通流量数据集：包含 170 个传感器节点在 2016 年 7-8 月的流量、占有率和速度数据}
+{PeMS04 与 PeMS07 交通流量数据集：用于 PDFormer 预测模型的基准性能验证与对比实验}
+{Qwen3.5-9B 大语言模型：参数量 9B，通过 vLLM 部署于本地 GPU 服务器}
+{LangGraph 与 LangChain 框架：用于构建基于状态图的 ReAct 推理循环与工具调度逻辑}
+{FastAPI 与 SQLite 技术栈：用于搭建后端微服务，提供流量点查询与历史趋势查询的 RESTful 接口}
 %% 工作内容
 \assignWork
-{工作内容第一行}
-{工作内容第二行}
-{工作内容第三行}
-{工作内容第四行}
-{工作内容第五行}
-{工作内容第六行}
+{调研大语言模型智能体技术在交通领域的研究现状，包括 ReAct 推理范式、工具调用机制和 LangGraph 状态图框架}
+{完成 PeMS08 交通数据集的清洗、标准化与数据库构建，基于 FastAPI 实现流量点查询、历史趋势查询两个后端服务接口}
+{在本地 GPU 服务器上通过 vLLM 部署 Qwen3.5-9B 大模型，完成 OpenAI 兼容 API 的配置与调试}
+{基于 LangGraph 框架设计并实现交通智能体系统，包括系统提示词设计、双重兼容的工具调用解析机制（bind\_tools 通道与正则回退模式）、条件路由逻辑}
+{设计并实现三个核心工具：simple\_query 流量点查询工具、deep\_analysis 深度分析工具（含 3 小时历史数据回溯）、predict\_traffic 流量预测工具（含 170 节点特征组装与 PDFormer 模型调用）}
+{使用 LibCity 框架对 PDFormer 时空预测模型在 PeMS04 和 PeMS08 数据集上进行训练与复现验证，完成多步预测性能评估}
+{设计涵盖基础查询、深度分析、流量预测、多工具协同、无工具调用、异常输入和密集并行共七类场景的 37 条测试用例，对智能体进行系统性端到端测试}
+{完成毕业论文撰写，总结基于大模型的交通智能体设计方法与实验成果}
 %% 参考文献
 \assignRef
-{参考文献第一行}
-{参考文献第二行}
-{参考文献第三行}
-{参考文献第四行}
-{参考文献第五行}
-{参考文献第六行}
-{参考文献第七行}
-{参考文献第八行}
+{Jiang J, Han C, Zhao W X, et al. PDFormer: Propagation Delay-Aware Dynamic Long-Range Transformer for Traffic Flow Prediction[C]. AAAI 2023}
+{Wei Q, Ma L, Liu Z, et al. Qwen3 Technical Report[J]. arXiv preprint arXiv:2505.09388, 2025}
+{Lv Y, Duan Y, Kang W, et al. Traffic Flow Prediction With Big Data: A Deep Learning Approach[J]. IEEE TITS, 2015, 16(2): 865-873}
+{Zheng C, Fan X, Wang C, et al. GMAN: A Graph Multi-Attention Network for Traffic Prediction[C]. AAAI 2020}
+{陈嘉琦, 刘彦辰, 邢焕来, 等. 基于大语言模型的交通领域智能体应用综述[J]. 计算机应用研究, 2025, 42(3)}
+{王林, 高峰, 李平. 基于时空图卷积网络的城市交通流量预测[J]. 计算机工程与应用, 2023, 59(5): 56-64}
+{冯骁骋, 宋皓宇, 张伟男, 等. 基于思维链的大语言模型协同推理方法综述[J]. 计算机学报, 2024, 47(3): 1-22}
+{张浩, 刘亮. 智能体架构在大模型应用中的工程实践与优化策略[J]. 计算机工程与科学, 2024, 46(9): 1556-1568}
