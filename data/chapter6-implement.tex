@@ -14,13 +14,13 @@ PDFormer 是本研究所用的时序预测引擎，主要是为了解决传统�
 
 \begin{table}[htbp]
   \centering
-  \caption{Performance on Graph-based Datasets.}
+  \caption{各模型在图数据集上的预测性能对比 \upcite{ref31_jiang2023pdformer}}
   \label{tab:performance_graph}
   \resizebox{0.8\textwidth}{!}{
-  \begin{tabular}{l|ccc|ccc|ccc}
+  \begin{tabular}{lccccccccc}
     \toprule
-    \multirow{2}{*}{Model} & \multicolumn{3}{c|}{PeMS04} & \multicolumn{3}{c|}{PeMS07} & \multicolumn{3}{c}{PeMS08} \\
-    \cline{2-10}
+    \multirow{2}{*}{Model} & \multicolumn{3}{c}{PeMS04} & \multicolumn{3}{c}{PeMS07} & \multicolumn{3}{c}{PeMS08} \\
+    \cmidrule(lr){2-4} \cmidrule(lr){5-7} \cmidrule(lr){8-10}
     & MAE & MAPE(\%) & RMSE & MAE & MAPE(\%) & RMSE & MAE & MAPE(\%) & RMSE \\
     \midrule
     VAR     & 23.750 & 18.090 & 36.660 & 101.200 & 39.690 & 155.140 & 22.320 & 14.470 & 33.830 \\

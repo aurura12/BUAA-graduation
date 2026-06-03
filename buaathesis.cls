@@ -322,7 +322,7 @@ The LaTeX template for thesis of BUAA]
 
 \RequirePackage[xetex,unicode]{hyperref}
 \ifbuaa@color
-    \hypersetup{colorlinks}
+    \hypersetup{colorlinks, linkcolor=black, citecolor=black, urlcolor=black}
 \else
     \hypersetup{hidelinks}
 \fi
@@ -1034,13 +1034,12 @@ The LaTeX template for thesis of BUAA]
 \def\buaa@bachelor@assign@work@four{}
 \def\buaa@bachelor@assign@work@five{}
 \def\buaa@bachelor@assign@work@six{}
-\newcommand{\assignWork}[6]{
+\newcommand{\assignWork}[5]{
     \def\buaa@bachelor@assign@work@one{#1}
     \def\buaa@bachelor@assign@work@two{#2}
     \def\buaa@bachelor@assign@work@three{#3}
     \def\buaa@bachelor@assign@work@four{#4}
     \def\buaa@bachelor@assign@work@five{#5}
-    \def\buaa@bachelor@assign@work@six{#6}
 }
 % 参考文献
 \def\buaa@bachelor@assign@ref@one{}
@@ -1100,7 +1099,6 @@ The LaTeX template for thesis of BUAA]
         \ulinel{\buaa@bachelor@assign@work@three}
         \ulinel{\buaa@bachelor@assign@work@four}
         \ulinel{\buaa@bachelor@assign@work@five}
-        \ulinel{\buaa@bachelor@assign@work@six}
         \newpage
         \thispagestyle{empty}
         \begin{spacing}{1.9}

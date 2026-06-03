@@ -30,13 +30,17 @@
 
 对于 7 个传感器的经纬度坐标 $(lon, lat)$，使用 Haversine 公式计算任意两个节点 $i$ 和 $j$ 之间的球面距离 $d_{ij}$。这个公式考虑了地球半径 $R$（取 6371 km）以及纬度变化对经度的影响，公式如下：
 
-$$d_{ij} = 2R \arcsin\left(\sqrt{\sin^2\left(\frac{\Delta \text{lat}}{2}\right) + \cos(\text{lat}_i) \cos(\text{lat}_j) \sin^2\left(\frac{\Delta \text{lon}}{2}\right)}\right)$$
+\begin{equation}
+d_{ij} = 2R \arcsin\left(\sqrt{\sin^2\left(\frac{\Delta \text{lat}}{2}\right) + \cos(\text{lat}_i) \cos(\text{lat}_j) \sin^2\left(\frac{\Delta \text{lon}}{2}\right)}\right)
+\end{equation}
 
 其中，$\Delta \text{lat} = \text{lat}_j - \text{lat}_i$，$\Delta \text{lon} = \text{lon}_j - \text{lon}_i$。
 
 得到所有节点之间的距离后，用标准差 $\sigma$ 作为缩放因子，通过高斯核函数计算节点间的相似度权重 $w_{ij}$：
 
-$$w_{ij} = \exp\left( -\frac{d_{ij}^2}{\sigma^2} \right)$$
+\begin{equation}
+w_{ij} = \exp\left( -\frac{d_{ij}^2}{\sigma^2} \right)
+\end{equation}
 
 距离越近的节点权重越大，接近 1，距离远的则接近 0。为了得到一个简洁的图网络并过滤掉关系太弱的连接，设置阈值 $\epsilon = 0.1$。只有当 $w_{ij} \geq 0.1$ 时，才认为两个节点之间存在连接。最终这些关系数据被保存到 .rel 文件中，作为模型的空间先验信息。
 

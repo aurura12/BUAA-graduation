@@ -3,7 +3,9 @@
     "allow": [
       "Bash(where perl *)",
       "Bash(perl -v)",
-      "Bash(perl -MFile::Path -e 'print $File::Path::VERSION')"
+      "Bash(perl -MFile::Path -e 'print $File::Path::VERSION')",
+      "Bash(python *)",
+      "Bash(findstr \"upcite\")"
     ]
   }
 }

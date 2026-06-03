@@ -31,9 +31,9 @@
 \caption{测试用例分类}
 \label{tab:test-cases}
 \begin{tabular}{p{2.2cm}p{0.8cm}p{1cm}p{9cm}}
-\hline
+\toprule
 \textbf{任务类型} & \textbf{数量} & \textbf{编号} & \textbf{典型示例} \\
-\hline
+\midrule
 基础查询 & 8 & 1–8 & 帮我查下 1 号传感器在 2016 年七月一日上午十点的流量 \\
 深度分析 & 11 & 9–19 & 能分析一下 2 号探头在 2016.7.1 下午五点半那会儿的交通情况吗 \\
 流量预测 & 8 & 20–27 & 预测一下 3 号传感器从 2016 年 7 月 2 日早上八点开始未来半小时的车流 \\
@@ -41,7 +41,7 @@
 无工具调用 & 1 & 34 & 你好，请问你能帮我做什么呢 \\
 异常输入 & 2 & 35–36 & 帮我查一下 200 号传感器在\ldots 的流量 \\
 密集并行 & 1 & 37 & 帮我查 10、20、30 号传感器在\ldots 6 点、7 点、8 点的流量 \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -66,9 +66,9 @@
 \caption{意图识别准确率统计}
 \label{tab:intent-accuracy}
 \begin{tabular}{p{3.5cm}p{1.5cm}p{1.5cm}p{1.5cm}p{1.8cm}}
-\hline
+\toprule
 \textbf{任务类型} & \textbf{用例数} & \textbf{正确数} & \textbf{错误数} & \textbf{准确率} \\
-\hline
+\midrule
 基础查询 & 8 & 8 & 0 & 100\% \\
 深度分析 & 11 & 11 & 0 & 100\% \\
 流量预测 & 8 & 8 & 0 & 100\% \\
@@ -76,9 +76,9 @@
 无工具调用 & 1 & 1 & 0 & 100\% \\
 异常输入（错误处理） & 2 & 2 & 0 & 100\% \\
 密集并行 & 1 & 1 & 0 & 100\% \\
-\hline
+\midrule
 \textbf{合计} & \textbf{37} & \textbf{37} & \textbf{0} & \textbf{100\%} \\
-\hline
+\bottomrule
 \end{tabular}
 \end{table}
 
@@ -93,15 +93,15 @@
 \caption{时间格式覆盖与解析结果}
 \label{tab:time-format}
 \begin{tabular}{p{4cm}p{4cm}p{2cm}p{2cm}}
-\hline
+\toprule
 \textbf{时间格式} & \textbf{示例} & \textbf{出现次数} & \textbf{解析成功} \\
-\hline
+\midrule
 中文书面语 & 2016 年七月一日上午十点、七月七号早高峰八点 & 9 & 9 \\
 阿拉伯数字+点分隔 & 2016.7.30 早上八点、2016.7.13 早上七点 & 5 & 5 \\
 斜杠分隔 & 2016/7/2 18:00、2016/7/11 17:00 & 3 & 3 \\
 ISO-8601 风格 & 2016-07-08 晚上八点、2016-07-19 16:45 & 4 & 4 \\
 相对时间（昨天） & 昨天 14 点左右、昨天早高峰九点 & 3 & 3* \\
-\hline
+\bottomrule
 \end{tabular}
 
 注：* 相对时间的三条用例解析为系统当前日期（2026-05-07），格式解析本身正确，但由于 PeMS08 数据集中不存在该日期数据，查询返回空结果。
